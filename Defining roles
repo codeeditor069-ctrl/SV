@@ -2,9 +2,12 @@ local Players = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
 
 local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "Shadow_System"
 ScreenGui.Parent = CoreGui
+ScreenGui.ResetOnSpawn = false
 
 local function ShowShadowNotif()
     local NotifFrame = Instance.new("Frame")
@@ -98,8 +101,8 @@ Title.Size = UDim2.new(1, 0, 0, 35)
 Title.Text = "SYSTEM BYPASS: ROLE INJECTOR"
 Title.TextColor3 = Color3.fromRGB(255, 0, 0)
 Title.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-Title.Font = Enum.Font.SourceSansBold
-Title.TextSize = 16
+Title.Font = Enum.Font.Creepster
+Title.TextSize = 18
 Title.Parent = MainFrame
 
 local TitleCorner = Instance.new("UICorner")
@@ -113,8 +116,8 @@ PlayerInput.PlaceholderText = "Target Name..."
 PlayerInput.Text = ""
 PlayerInput.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 PlayerInput.TextColor3 = Color3.fromRGB(255, 255, 255)
-PlayerInput.Font = Enum.Font.SourceSans
-PlayerInput.TextSize = 16
+PlayerInput.Font = Enum.Font.Creepster
+PlayerInput.TextSize = 18
 PlayerInput.Parent = MainFrame
 
 local pCorner = Instance.new("UICorner")
@@ -128,8 +131,8 @@ RoleInput.PlaceholderText = "Role: Murder / Sheriff"
 RoleInput.Text = ""
 RoleInput.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 RoleInput.TextColor3 = Color3.fromRGB(255, 255, 255)
-RoleInput.Font = Enum.Font.SourceSans
-RoleInput.TextSize = 16
+RoleInput.Font = Enum.Font.Creepster
+RoleInput.TextSize = 18
 RoleInput.Parent = MainFrame
 
 local rCorner = Instance.new("UICorner")
@@ -142,13 +145,41 @@ InjectBtn.Position = UDim2.new(0, 10, 0, 150)
 InjectBtn.Text = "BYPASS & INJECT ROLE"
 InjectBtn.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
 InjectBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-InjectBtn.Font = Enum.Font.SourceSansBold
-InjectBtn.TextSize = 18
+InjectBtn.Font = Enum.Font.Creepster
+InjectBtn.TextSize = 22
 InjectBtn.Parent = MainFrame
 
 local bCorner = Instance.new("UICorner")
 bCorner.CornerRadius = UDim.new(0, 12)
 bCorner.Parent = InjectBtn
+
+local IconButton = Instance.new("ImageButton")
+IconButton.Size = UDim2.new(0, 70, 0, 70)
+IconButton.Position = UDim2.new(0.05, 0, 0.4, 0)
+IconButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+IconButton.BorderSizePixel = 0
+IconButton.Image = "rbxassetid://99980570935687"
+IconButton.ScaleType = Enum.ScaleType.Crop
+IconButton.Active = true
+IconButton.Draggable = true
+IconButton.Parent = ScreenGui
+
+local IconCorner = Instance.new("UICorner")
+IconCorner.CornerRadius = UDim.new(1, 0)
+IconCorner.Parent = IconButton
+
+local IconStroke = Instance.new("UIStroke")
+IconStroke.Thickness = 3
+IconStroke.Color = Color3.fromRGB(255, 0, 0)
+IconStroke.Parent = IconButton
+
+RunService.RenderStepped:Connect(function(deltaTime)
+    IconButton.Rotation = IconButton.Rotation + (90 * deltaTime)
+end)
+
+IconButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = not MainFrame.Visible
+end)
 
 local function Infiltrate(target, role)
     local remotes = {}
