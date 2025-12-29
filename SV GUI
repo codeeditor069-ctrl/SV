@@ -12,43 +12,29 @@ local redzlib = {
 Themes = {
     Darker = {
         ["Color Hub 1"] = ColorSequence.new({
-            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(15, 15, 15)),
-            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(10, 10, 10)),
-            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(5, 5, 5))
+            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(120, 60, 200)),
+            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(100, 40, 180)),
+            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(80, 20, 150))
         }),
-        ["Color Hub 2"] = Color3.fromRGB(10, 10, 10),
-        ["Color Stroke"] = Color3.fromRGB(35, 35, 35),
-        ["Color Theme"] = Color3.fromRGB(0, 0, 0),
+        ["Color Hub 2"] = Color3.fromRGB(120, 60, 200),
+        ["Color Stroke"] = Color3.fromRGB(200, 100, 255),
+        ["Color Theme"] = Color3.fromRGB(15, 15, 15),
         ["Color Text"] = Color3.fromRGB(255, 255, 255),
-        ["Color Dark Text"] = Color3.fromRGB(160, 160, 160)
+        ["Color Dark Text"] = Color3.fromRGB(220, 180, 255)
     },
-
     Dark = {  
         ["Color Hub 1"] = ColorSequence.new({  
-            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 20, 20)),  
-            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(10, 10, 10)),  
-            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))  
+            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 255)),  
+            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(180, 0, 180)),  
+            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(120, 0, 120))  
         }),  
-        ["Color Hub 2"] = Color3.fromRGB(15, 15, 15),  
-        ["Color Stroke"] = Color3.fromRGB(40, 40, 40),  
-        ["Color Theme"] = Color3.fromRGB(0, 0, 0),  
-        ["Color Text"] = Color3.fromRGB(255, 255, 255),  
-        ["Color Dark Text"] = Color3.fromRGB(180, 180, 180)  
-    },  
-
-    Purple = {  
-        ["Color Hub 1"] = ColorSequence.new({  
-            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(25, 25, 25)),  
-            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(15, 15, 15)),  
-            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(5, 5, 5))  
-        }),  
-        ["Color Hub 2"] = Color3.fromRGB(20, 20, 20),  
-        ["Color Stroke"] = Color3.fromRGB(45, 45, 45),  
+        ["Color Hub 2"] = Color3.fromRGB(200, 0, 200),  
+        ["Color Stroke"] = Color3.fromRGB(255, 100, 255),  
         ["Color Theme"] = Color3.fromRGB(10, 10, 10),  
         ["Color Text"] = Color3.fromRGB(255, 255, 255),  
-        ["Color Dark Text"] = Color3.fromRGB(170, 170, 170)  
-    },  
-},
+        ["Color Dark Text"] = Color3.fromRGB(255, 150, 255)  
+    }, 
+  }, 
 
 	Info = {
 		Version = "1.2.0"
@@ -1446,38 +1432,40 @@ function redzlib:MakeWindow(Configs)
 	end;LoadFile()
 	
 	local UISizeX, UISizeY = unpack(redzlib.Save.UISize)
-		local MainFrame = InsertTheme(Create("ImageButton", ScreenGui, {
-		Size = UDim2.fromOffset(UISizeX, UISizeY),
-		Position = UDim2.new(0.5, -UISizeX/2, 0.5, -UISizeY/2),
-		BackgroundTransparency = 0.03,
-		Name = "Hub"
-	}), "Main")
+	local MainFrame = InsertTheme(Create("ImageButton", ScreenGui, {
+    Size = UDim2.fromOffset(UISizeX, UISizeY),
+    Position = UDim2.new(0.5, -UISizeX/2, 0.5, -UISizeY/2),
+    BackgroundTransparency = 1,
+    Name = "Hub"
+}), "Main")
 
-	local WindowBackground = Create("ImageLabel", MainFrame, {
-		Name = "WindowBackground",
-		Size = UDim2.new(1, 0, 1, 0),
-		Position = UDim2.new(0, 0, 0, 0),
-		BackgroundTransparency = 1,
-		Image = "rbxassetid://139625024983478", 
-		ImageTransparency = 0.5,
-		ScaleType = Enum.ScaleType.Crop,
-		ZIndex = 0
-	})
-	Make("Corner", WindowBackground)
+local WindowBackground = Create("ImageLabel", MainFrame, {
+    Name = "WindowBackground",
+    Size = UDim2.new(1, 0, 1, 0),
+    Position = UDim2.new(0, 0, 0, 0),
+    BackgroundTransparency = 1,
+    Image = "rbxassetid://139625024983478", 
+    ImageTransparency = 0.2,
+    ScaleType = Enum.ScaleType.Crop,
+    ZIndex = 0
+})
+Make("Corner", WindowBackground)
 
-	Make("Gradient", MainFrame, {
-		Rotation = 45
-	})MakeDrag(MainFrame)
-	
-	local MainCorner = Make("Corner", MainFrame)
-	
-	local Components = Create("Folder", MainFrame, {
-		Name = "Components"
-	})
-	
-	local DropdownHolder = Create("Folder", ScreenGui, {
-		Name = "Dropdown"
-	})
+Make("Gradient", MainFrame, {
+    Rotation = 45
+})
+MakeDrag(MainFrame)
+
+local MainCorner = Make("Corner", MainFrame)
+
+local Components = Create("Folder", MainFrame, {
+    Name = "Components"
+})
+
+local DropdownHolder = Create("Folder", ScreenGui, {
+    Name = "Dropdown"
+})
+
 
 	local TopBar = Create("Frame", Components, {
 		Size = UDim2.new(1, 0, 0, 28),
