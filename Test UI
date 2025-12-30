@@ -1,0 +1,148 @@
+local Marketplace = game:GetService("MarketplaceService")
+local UIS = game:GetService("UserInputService")
+local Tween = game:GetService("TweenService")
+local Http = game:GetService("HttpService")
+local Run = game:GetService("RunService")
+local Core = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local LP = Players.LocalPlayer
+local Mouse = LP:GetMouse()
+
+local sh_lib = {
+    Themes = {
+        Darker = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 50, 150)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(100, 20, 80))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(255, 50, 150),
+            ["Color Stroke"] = Color3.fromRGB(255, 50, 150),
+            ["Color Theme"] = Color3.fromRGB(10, 10, 12),
+            ["Color Text"] = Color3.fromRGB(255, 255, 255),
+            ["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
+        }
+    }
+}
+
+local function Create(Class, Parent, Props)
+    local Obj = Instance.new(Class)
+    for i, v in pairs(Props) do Obj[i] = v end
+    if Parent then Obj.Parent = Parent end
+    return Obj
+end
+
+local function Make(Class, Parent, Prop)
+    local Obj = Instance.new("UI" .. Class)
+    Obj.Parent = Parent
+    if Class == "Corner" then Obj.CornerRadius = Prop
+    elseif Class == "Stroke" then Obj.Thickness = Prop
+    elseif Class == "Gradient" then Obj.Color = Prop end
+    return Obj
+end
+
+function sh_lib:CreateWindow(Config)
+    local TitleText = Config[1] or "SH.LIB"
+    
+    local ScreenGui = Create("ScreenGui", RunService:IsStudio() and LP.PlayerGui or Core, {
+        Name = "SH_LIB_GUI",
+        ResetOnSpawn = false
+    })
+
+    local MainFrame = Create("Frame", ScreenGui, {
+        Name = "MainFrame",
+        Size = UDim2.fromOffset(630, 440),
+        Position = UDim2.new(0.5, -315, 0.5, -220),
+        BackgroundColor3 = sh_lib.Themes.Darker["Color Theme"],
+        BorderSizePixel = 0,
+        ClipsDescendants = true
+    })
+
+    Make("Corner", MainFrame, UDim.new(0, 12))
+    local MainStroke = Make("Stroke", MainFrame, 2)
+    MainStroke.Color = sh_lib.Themes.Darker["Color Stroke"]
+
+    local TopBar = Create("Frame", MainFrame, {
+        Name = "TopBar",
+        Size = UDim2.new(1, 0, 0, 35),
+        BackgroundTransparency = 1
+    })
+
+    local Title = Create("TextLabel", TopBar, {
+        Size = UDim2.new(1, -70, 1, 0),
+        Position = UDim2.fromOffset(12, 0),
+        Text = TitleText,
+        Font = Enum.Font.GothamBold,
+        TextSize = 14,
+        TextColor3 = sh_lib.Themes.Darker["Color Text"],
+        TextXAlignment = Enum.TextXAlignment.Left,
+        BackgroundTransparency = 1
+    })
+
+    local Sidebar = Create("ScrollingFrame", MainFrame, {
+        Size = UDim2.new(0, 150, 1, -36),
+        Position = UDim2.fromOffset(0, 36),
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        ScrollBarThickness = 0,
+        CanvasSize = UDim2.new(0, 0, 0, 0),
+        AutomaticCanvasSize = Enum.AutomaticSize.Y
+    })
+    Create("UIListLayout", Sidebar, {Padding = UDim.new(0, 5)})
+    Create("UIPadding", Sidebar, {PaddingLeft = UDim.new(0, 10), PaddingTop = UDim.new(0, 10)})
+
+    local Containers = Create("Folder", MainFrame, {Name = "Containers"})
+    local ContainerHolder = Create("Frame", MainFrame, {
+        Size = UDim2.new(1, -160, 1, -46),
+        Position = UDim2.fromOffset(155, 41),
+        BackgroundTransparency = 1
+    })
+
+    local FirstTab = true
+    function sh_lib:MakeTab(TabConfig)
+        local TabName = TabConfig[1] or "Tab"
+        local TabBtn = Create("TextButton", Sidebar, {
+            Size = UDim2.new(1, -10, 0, 30),
+            BackgroundTransparency = 1,
+            Text = TabName,
+            Font = Enum.Font.GothamMedium,
+            TextSize = 13,
+            TextColor3 = sh_lib.Themes.Darker["Color Dark Text"],
+            TextXAlignment = Enum.TextXAlignment.Left
+        })
+
+        local Container = Create("ScrollingFrame", ContainerHolder, {
+            Size = UDim2.new(1, 0, 1, 0),
+            BackgroundTransparency = 1,
+            Visible = false,
+            ScrollBarThickness = 2,
+            ScrollBarImageColor3 = sh_lib.Themes.Darker["Color Hub 2"],
+            AutomaticCanvasSize = Enum.AutomaticSize.Y
+        })
+        Create("UIListLayout", Container, {Padding = UDim.new(0, 8)})
+
+        TabBtn.MouseButton1Click:Connect(function()
+            for _, v in pairs(ContainerHolder:GetChildren()) do v.Visible = false end
+            Container.Visible = true
+        end)
+
+        if FirstTab then FirstTab = false; Container.Visible = true end
+
+        local Elements = {}
+        function Elements:AddButton(BtnConfig)
+            local Name = BtnConfig[1] or "Button"
+            local Callback = BtnConfig[2] or function() end
+            local B = Create("TextButton", Container, {
+                Size = UDim2.new(1, -10, 0, 35),
+                BackgroundColor3 = Color3.fromRGB(25, 25, 30),
+                Text = Name,
+                Font = Enum.Font.GothamMedium,
+                TextColor3 = Color3.fromRGB(255, 255, 255),
+                TextSize = 13
+            })
+            Make("Corner", B, UDim.new(0, 6))
+            B.MouseButton1Click:Connect(Callback)
+        end
+        return Elements
+    end
+    return sh_lib
+end
