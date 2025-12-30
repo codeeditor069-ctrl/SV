@@ -2618,8 +2618,20 @@ function Tab:AddThemeColorPicker()
             for _, v in pairs(MainFrame:GetDescendants()) do
                 if v:IsA("UIStroke") then
                     v.Color = SelectedColor
-                elseif v:IsA("TextLabel") and v.Name == "Title" then
-                    v.TextColor3 = SelectedColor
+                elseif v:IsA("TextLabel") then
+                    if v.Name == "Title" or v.Name == "Text" or v.Parent:IsA("ScrollingFrame") then
+                        v.TextColor3 = SelectedColor
+                    end
+                elseif v:IsA("ImageLabel") or v:IsA("ImageButton") then
+                    v.ImageColor3 = SelectedColor
+                elseif v:IsA("Frame") and (v.Name == "ColorBar" or v.Name == "Indicator") then 
+                    v.BackgroundColor3 = SelectedColor
+                elseif v:IsA("ScrollingFrame") and v.Name == "MainScroll" then
+                    for _, tabBtn in pairs(v:GetChildren()) do
+                        if tabBtn:IsA("TextButton") then
+                            tabBtn.TextColor3 = SelectedColor
+                        end
+                    end
                 end
             end
         end
