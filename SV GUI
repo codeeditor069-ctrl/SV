@@ -2542,6 +2542,25 @@ end
 			end
 			return Dropdown
 		end
+
+		function Tab:Addsizedropdown()
+			return Tab:AddDropdown({
+				Name = "اختار حجم الواجهة",
+				Options = {"صغيرة", "متوسطة", "كبيرة"},
+				Default = "كبيرة",
+				Callback = function(Value)
+					if Value == "صغيرة" then
+						MainFrame.Size = UDim2.fromOffset(450, 300)
+					elseif Value == "متوسطة" then
+						MainFrame.Size = UDim2.fromOffset(550, 380)
+					elseif Value == "كبيرة" then
+						MainFrame.Size = UDim2.fromOffset(630, 440)
+					end
+				end
+			})
+		end
+
+
 		function Tab:AddSlider(Configs)
 			local SName = Configs[1] or Configs.Name or Configs.Title or "Slider!"
 			local SDesc = Configs.Desc or Configs.Description or ""
