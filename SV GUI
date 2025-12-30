@@ -2583,63 +2583,6 @@ function Tab:AddSideDropdown()
     })
 end
 
-function Tab:AddThemeColorPicker()
-    return Tab:AddDropdown({
-        Name = "تغيير لون الواجهة",
-        Options = {"بينك", "أحمر", "أزرق", "أخضر", "أصفر", "أبيض", "برتقالي", "بنفسجي", "سماوي", "ذهبي", "فضي", "نيون", "بني", "رمادي", "فيروزي", "كريمي"},
-        Default = "بينك",
-        Callback = function(Value)
-            local SelectedColor
-            if Value == "بينك" then SelectedColor = Color3.fromRGB(255, 50, 150)
-            elseif Value == "أحمر" then SelectedColor = Color3.fromRGB(255, 0, 0)
-            elseif Value == "أزرق" then SelectedColor = Color3.fromRGB(0, 0, 255)
-            elseif Value == "أخضر" then SelectedColor = Color3.fromRGB(0, 255, 0)
-            elseif Value == "أصفر" then SelectedColor = Color3.fromRGB(255, 255, 0)
-            elseif Value == "أبيض" then SelectedColor = Color3.fromRGB(255, 255, 255)
-            elseif Value == "برتقالي" then SelectedColor = Color3.fromRGB(255, 165, 0)
-            elseif Value == "بنفسجي" then SelectedColor = Color3.fromRGB(138, 43, 226)
-            elseif Value == "سماوي" then SelectedColor = Color3.fromRGB(0, 255, 255)
-            elseif Value == "ذهبي" then SelectedColor = Color3.fromRGB(255, 215, 0)
-            elseif Value == "فضي" then SelectedColor = Color3.fromRGB(192, 192, 192)
-            elseif Value == "نيون" then SelectedColor = Color3.fromRGB(57, 255, 20)
-            elseif Value == "بني" then SelectedColor = Color3.fromRGB(139, 69, 19)
-            elseif Value == "رمادي" then SelectedColor = Color3.fromRGB(128, 128, 128)
-            elseif Value == "فيروزي" then SelectedColor = Color3.fromRGB(64, 224, 208)
-            elseif Value == "كريمي" then SelectedColor = Color3.fromRGB(255, 253, 208)
-            end
-
-            if MainFrame:FindFirstChild("Shadow") then
-                MainFrame.Shadow.ImageColor3 = SelectedColor
-            end
-
-            redzlib.Themes.Darker["Color Hub 2"] = SelectedColor
-            redzlib.Themes.Darker["Color Stroke"] = SelectedColor
-            
-            for _, v in pairs(MainFrame:GetDescendants()) do
-                if v:IsA("UIStroke") then
-                    v.Color = SelectedColor
-                elseif v:IsA("TextLabel") then
-                    if v.Name == "Title" or v.Name == "Text" or v.Parent:IsA("ScrollingFrame") then
-                        v.TextColor3 = SelectedColor
-                    end
-                elseif v:IsA("ImageLabel") or v:IsA("ImageButton") then
-                    v.ImageColor3 = SelectedColor
-                elseif v:IsA("Frame") and (v.Name == "ColorBar" or v.Name == "Indicator") then 
-                    v.BackgroundColor3 = SelectedColor
-                elseif v:IsA("ScrollingFrame") and v.Name == "MainScroll" then
-                    for _, tabBtn in pairs(v:GetChildren()) do
-                        if tabBtn:IsA("TextButton") then
-                            tabBtn.TextColor3 = SelectedColor
-                        end
-                    end
-                end
-            end
-        end
-    })
-end
-
-
-
 		function Tab:AddSlider(Configs)
 			local SName = Configs[1] or Configs.Name or Configs.Title or "Slider!"
 			local SDesc = Configs.Desc or Configs.Description or ""
