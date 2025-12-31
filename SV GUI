@@ -1096,37 +1096,7 @@ local function PlaySound()
     ClickSound:Play()
 end
 
-local CurrentTheme = self.Themes[self.Save.Theme]
 
-local Glow = Instance.new("ImageLabel")
-Glow.Name = "GlowEffect"
-Glow.Parent = ScreenGui
-Glow.BackgroundTransparency = 1
-Glow.Position = UDim2.new(0.5, -330 * UIScale, 0.5, -235 * UIScale)
-Glow.Size = UDim2.new(0, 660 * UIScale, 0, 470 * UIScale)
-Glow.Image = "rbxassetid://6014264792"
-Glow.ImageColor3 = CurrentTheme["Color Hub 2"]
-Glow.ImageTransparency = 0.5
-Glow.ZIndex = 0
-
-local function StartGlowAnimation()
-    local Info = TweenInfo.new(2.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true)
-    TweenService:Create(Glow, Info, {
-        ImageTransparency = 0.8,
-        Size = UDim2.new(0, 690 * UIScale, 0, 500 * UIScale),
-        Position = UDim2.new(0.5, -345 * UIScale, 0.5, -250 * UIScale)
-    }):Play()
-end
-StartGlowAnimation()
-
-task.spawn(function()
-    while task.wait() do
-        if MainFrame then
-            local Pos = MainFrame.Position
-            Glow.Position = UDim2.new(Pos.X.Scale, Pos.X.Offset - (15 * UIScale), Pos.Y.Scale, Pos.Y.Offset - (15 * UIScale))
-        end
-    end
-end)
 
 
 task.spawn(function()
