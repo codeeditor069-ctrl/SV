@@ -44,34 +44,6 @@ local function Corner(parent, props)
 end
 
 
-local function SetProps(instance, props)
-  if instance and props then
-    table.foreach(props, function(prop, value)
-      instance[prop] = value
-    end)
-  end
-  return instance
-end
-
-local function Corner(parent, props)
-  local new = Create("UICorner", parent)
-  new.CornerRadius = Configs_HUB.Corner_Radius
-  if props then
-    SetProps(new, props)
-  end
-  return new
-end
-
-local function Stroke(parent, props)
-  local new = Create("UIStroke", parent)
-  new.Color = Configs_HUB.Cor_Stroke
-  new.ApplyStrokeMode = "Border"
-  if props then
-    SetProps(new, props)
-  end
-  return new
-end
-
 local function CreateTween(instance, prop, value, time, tweenWait)
   local tween = TweenService:Create(instance,
   TweenInfo.new(time, Enum.EasingStyle.Linear),
