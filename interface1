@@ -1,13 +1,21 @@
 local ConfigsHUB = {
   CorHub = Color3.fromRGB(15, 15, 15),
+  Cor_Hub = Color3.fromRGB(15, 15, 15),
   CorOptions = Color3.fromRGB(15, 15, 15),
+  Cor_Options = Color3.fromRGB(15, 15, 15),
   CorStroke = Color3.fromRGB(255, 5, 5),
+  Cor_Stroke = Color3.fromRGB(255, 5, 5),
   CorText = Color3.fromRGB(240, 240, 240),
+  Cor_Text = Color3.fromRGB(240, 240, 240),
   CorDarkText = Color3.fromRGB(240, 240, 240),
+  Cor_DarkText = Color3.fromRGB(240, 240, 240),
   CornerRadius = UDim.new(0, 4),
+  Corner_Radius = UDim.new(0, 4),
   TextFont = Enum.Font.FredokaOne,
+  Text_Font = Enum.Font.FredokaOne,
   HubTransparency = 0.3
 }
+local Configs_HUB = ConfigsHUB
 
 local BackgroundImageID = "rbxassetid://87776456504335"
 
@@ -42,6 +50,18 @@ local function Corner(parent, props)
   end
   return new
 end
+
+local function Stroke(parent, props)
+  local new = Create("UIStroke", parent)
+  new.Color = ConfigsHUB.CorStroke
+  if props then
+    SetProps(new, props)
+  end
+  return new
+end
+
+local Library = {}
+
 
 
 local function CreateTween(instance, prop, value, time, tweenWait)
@@ -319,7 +339,12 @@ function MakeWindow(Configs)
     KeyMenu:Destroy()
   end
   
-            local Menu = Create("Frame", ScreenGui, {
+function Library:MakeWindow(HubTitle)
+  local ScreenGui = Create("ScreenGui", CoreGui, {
+    Name = "MyHub"
+  })
+
+  local Menu = Create("Frame", ScreenGui, {
     Name = "MainMenu",
     BackgroundColor3 = ConfigsHUB.CorHub,
     BackgroundTransparency = ConfigsHUB.HubTransparency,
@@ -1638,3 +1663,4 @@ function MakeWindow(Configs)
   end
   return Menu
 end
+Library:MakeWindow("Cor Hub")
