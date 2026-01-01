@@ -319,7 +319,7 @@ function MakeWindow(Configs)
     KeyMenu:Destroy()
   end
   
-        local Menu = Create("Frame", ScreenGui, {
+          local Menu = Create("Frame", ScreenGui, {
     BackgroundColor3 = ConfigsHUB.CorHub,
     BackgroundTransparency = ConfigsHUB.HubTransparency,
     Position = UDim2.new(0.5, -500/2, 0.5, -270/2),
@@ -338,6 +338,7 @@ function MakeWindow(Configs)
     ZIndex = 0
   })
   Corner(MainBackground)
+
 
 
     local TopBar = Create("Frame", Menu, {
