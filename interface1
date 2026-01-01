@@ -11,7 +11,6 @@ local ConfigsHUB = {
 
 local BackgroundImageID = "rbxassetid://87776456504335"
 
-
 local CoreGui = game:GetService("CoreGui")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
@@ -19,12 +18,31 @@ local UserInputService = game:GetService("UserInputService")
 local function Create(instance, parent, props)
   local new = Instance.new(instance, parent)
   if props then
-    table.foreach(props, function(prop, value)
+    for prop, value in pairs(props) do
       new[prop] = value
-    end)
+    end
   end
   return new
 end
+
+local function SetProps(instance, props)
+  if instance and props then
+    for prop, value in pairs(props) do
+      instance[prop] = value
+    end
+  end
+  return instance
+end
+
+local function Corner(parent, props)
+  local new = Create("UICorner", parent)
+  new.CornerRadius = ConfigsHUB.CornerRadius
+  if props then
+    SetProps(new, props)
+  end
+  return new
+end
+
 
 local function SetProps(instance, props)
   if instance and props then
@@ -329,7 +347,7 @@ function MakeWindow(Configs)
     KeyMenu:Destroy()
   end
   
-      local Menu = Create("Frame", ScreenGui, {
+        local Menu = Create("Frame", ScreenGui, {
     BackgroundColor3 = ConfigsHUB.CorHub,
     BackgroundTransparency = ConfigsHUB.HubTransparency,
     Position = UDim2.new(0.5, -500/2, 0.5, -270/2),
@@ -348,6 +366,7 @@ function MakeWindow(Configs)
     ZIndex = 0
   })
   Corner(MainBackground)
+
 
     local TopBar = Create("Frame", Menu, {
     BackgroundTransparency = 1,
