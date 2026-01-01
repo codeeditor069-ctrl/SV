@@ -326,12 +326,13 @@ function MakeWindow(Configs)
     KeyMenu:Destroy()
   end
   
-  local Menu = Create("Frame", ScreenGui, {
+    local Menu = Create("Frame", ScreenGui, {
     BackgroundColor3 = Configs_HUB.Cor_Hub,
     Position = UDim2.new(0.5, -500/2, 0.5, -270/2),
     Active = true,
     Draggable = true
-  })Corner(Menu)
+  })
+  Corner(Menu)
 
   local MainBackground = Create("ImageLabel", Menu, {
     Name = "MainBackground",
@@ -343,6 +344,7 @@ function MakeWindow(Configs)
     ZIndex = 0
   })
   Corner(MainBackground)
+
 
 
   local TopBar = Create("Frame", Menu, {
