@@ -1,13 +1,16 @@
-local Configs_HUB = {
-  Cor_Hub = Color3.fromRGB(15, 15, 15),
-  Cor_Options = Color3.fromRGB(15, 15, 15),
-  Cor_Stroke = Color3.fromRGB(255, 5, 5),
-  Cor_Text = Color3.fromRGB(240, 240, 240),
-  Cor_DarkText = Color3.fromRGB(240, 240, 240),
-  Corner_Radius = UDim.new(0, 4),
-  Text_Font = Enum.Font.FredokaOne
+local ConfigsHUB = {
+  CorHub = Color3.fromRGB(15, 15, 15),
+  CorOptions = Color3.fromRGB(15, 15, 15),
+  CorStroke = Color3.fromRGB(255, 5, 5),
+  CorText = Color3.fromRGB(240, 240, 240),
+  CorDarkText = Color3.fromRGB(240, 240, 240),
+  CornerRadius = UDim.new(0, 4),
+  TextFont = Enum.Font.FredokaOne,
+  HubTransparency = 0.3
 }
+
 local BackgroundImageID = "rbxassetid://87776456504335"
+
 
 local CoreGui = game:GetService("CoreGui")
 local TweenService = game:GetService("TweenService")
@@ -326,8 +329,9 @@ function MakeWindow(Configs)
     KeyMenu:Destroy()
   end
   
-    local Menu = Create("Frame", ScreenGui, {
-    BackgroundColor3 = Configs_HUB.Cor_Hub,
+      local Menu = Create("Frame", ScreenGui, {
+    BackgroundColor3 = ConfigsHUB.CorHub,
+    BackgroundTransparency = ConfigsHUB.HubTransparency,
     Position = UDim2.new(0.5, -500/2, 0.5, -270/2),
     Active = true,
     Draggable = true
@@ -345,9 +349,7 @@ function MakeWindow(Configs)
   })
   Corner(MainBackground)
 
-
-
-  local TopBar = Create("Frame", Menu, {
+    local TopBar = Create("Frame", Menu, {
     BackgroundTransparency = 1,
     Size = UDim2.new(1, 0, 0, 25),
     Visible = false
