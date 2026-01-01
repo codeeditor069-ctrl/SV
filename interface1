@@ -4,9 +4,23 @@ local Configs_HUB = {
   Cor_Stroke = Color3.fromRGB(255, 5, 5),
   Cor_Text = Color3.fromRGB(240, 240, 240),
   Cor_DarkText = Color3.fromRGB(240, 240, 240),
-  Corner_Radius = UDim.new(0,4),
+  Corner_Radius = UDim.new(0, 4),
   Text_Font = Enum.Font.FredokaOne
 }
+
+local Background_Image_ID = "rbxassetid://87776456504335" 
+
+local MainBackground = Create("ImageLabel", Main_Frame, {
+    Name = "MainBackground",
+    Size = UDim2.new(1, 0, 1, 0),
+    BackgroundTransparency = 1,
+    Image = Background_Image_ID,
+    ImageTransparency = 0.4,
+    ScaleType = Enum.ScaleType.Crop,
+    ZIndex = 1
+})
+Corner(MainBackground)
+
 
 local CoreGui = game:GetService("CoreGui")
 local TweenService = game:GetService("TweenService")
