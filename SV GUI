@@ -2550,7 +2550,7 @@ end
 			return Tab:AddDropdown({
 				Name = "اختار حجم الواجهة",
 				Options = {"صغيرة", "متوسطة", "كبيرة"},
-				Default = "كبيرة",
+				Default = "متوسطه",
 				Callback = function(Value)
 					if Value == "صغيرة" then
 						MainFrame.Size = UDim2.fromOffset(450, 300)
