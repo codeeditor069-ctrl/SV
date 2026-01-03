@@ -12,27 +12,27 @@ local redzlib = {
 Themes = {
     Darker = {
         ["Color Hub 1"] = ColorSequence.new({
-            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(138, 43, 226)),
-            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(120, 20, 200)),
-            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(75, 0, 130))
+            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(120, 0, 255)),
+            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(90, 0, 200)),
+            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(60, 0, 150))
         }),
-        ["Color Hub 2"] = Color3.fromRGB(138, 43, 226),
-        ["Color Stroke"] = Color3.fromRGB(190, 150, 255),
+        ["Color Hub 2"] = Color3.fromRGB(120, 0, 255),
+        ["Color Stroke"] = Color3.fromRGB(160, 100, 255),
         ["Color Theme"] = Color3.fromRGB(15, 15, 15),
         ["Color Text"] = Color3.fromRGB(255, 255, 255),
-        ["Color Dark Text"] = Color3.fromRGB(200, 180, 255)
+        ["Color Dark Text"] = Color3.fromRGB(180, 150, 255)
     },
     Dark = {  
         ["Color Hub 1"] = ColorSequence.new({  
-            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(147, 112, 219)),
-            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(153, 50, 204)),
-            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(147, 112, 219))  
+            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(130, 0, 255)),
+            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(100, 0, 220)),
+            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(130, 0, 255))  
         }),  
-        ["Color Hub 2"] = Color3.fromRGB(153, 50, 204),  
-        ["Color Stroke"] = Color3.fromRGB(216, 191, 216),  
+        ["Color Hub 2"] = Color3.fromRGB(130, 0, 255),  
+        ["Color Stroke"] = Color3.fromRGB(170, 120, 255),  
         ["Color Theme"] = Color3.fromRGB(10, 10, 10),  
         ["Color Text"] = Color3.fromRGB(255, 255, 255),  
-        ["Color Dark Text"] = Color3.fromRGB(220, 200, 255)  
+        ["Color Dark Text"] = Color3.fromRGB(190, 160, 255)  
     },
 },
 
