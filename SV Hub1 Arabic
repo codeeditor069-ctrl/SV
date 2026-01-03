@@ -1,13 +1,13 @@
 local Redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/codeeditor069-ctrl/SV/refs/heads/main/SV%20GUI"))()
 
 local Window = Redzlib:MakeWindow({
-    Title = "SV HUB V2",
-    SubTitle = "by Velmorith and ShadowDev ",
-    SaveFolder = "SV "
+    Title = "Nerds Hub MM2",
+    SubTitle = "by Nerds Team ",
+    SaveFolder = "Nerds "
 })
 
 Window:AddMinimizeButton({
-    Button = {Image = "rbxassetid://139625024983478", BackgroundTransparency = 0},
+    Button = {Image = "rbxassetid://96239656552131", BackgroundTransparency = 0},
     Corner = {CornerRadius = UDim.new(35, 1)}
 })
 
