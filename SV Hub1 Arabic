@@ -2,7 +2,7 @@ local Redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/codee
 
 local Window = Redzlib:MakeWindow({
     Title = "Nerds Hub MM2",
-    SubTitle = "by Nerds Team"
+    SubTitle = "by Nerds Team",
     SaveFolder = "Nerds"
 })
 
