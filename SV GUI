@@ -12,29 +12,29 @@ local redzlib = {
 Themes = {
     Darker = {
         ["Color Hub 1"] = ColorSequence.new({
-            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 50, 150)),
-            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(200, 20, 120)),
-            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(150, 10, 100))
+            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(138, 43, 226)),
+            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(120, 20, 200)),
+            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(75, 0, 130))
         }),
-        ["Color Hub 2"] = Color3.fromRGB(255, 50, 150),
-        ["Color Stroke"] = Color3.fromRGB(255, 150, 200),
+        ["Color Hub 2"] = Color3.fromRGB(138, 43, 226),
+        ["Color Stroke"] = Color3.fromRGB(190, 150, 255),
         ["Color Theme"] = Color3.fromRGB(15, 15, 15),
         ["Color Text"] = Color3.fromRGB(255, 255, 255),
-        ["Color Dark Text"] = Color3.fromRGB(255, 200, 230)
+        ["Color Dark Text"] = Color3.fromRGB(200, 180, 255)
     },
     Dark = {  
         ["Color Hub 1"] = ColorSequence.new({  
-            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 20, 147)),  
-            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 105, 180)),  
-            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 20, 147))  
+            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(147, 112, 219)),
+            ColorSequenceKeypoint.new(0.50, Color3.fromRGB(153, 50, 204)),
+            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(147, 112, 219))  
         }),  
-        ["Color Hub 2"] = Color3.fromRGB(255, 20, 147),  
-        ["Color Stroke"] = Color3.fromRGB(255, 182, 193),  
+        ["Color Hub 2"] = Color3.fromRGB(153, 50, 204),  
+        ["Color Stroke"] = Color3.fromRGB(216, 191, 216),  
         ["Color Theme"] = Color3.fromRGB(10, 10, 10),  
         ["Color Text"] = Color3.fromRGB(255, 255, 255),  
-        ["Color Dark Text"] = Color3.fromRGB(255, 192, 203)  
+        ["Color Dark Text"] = Color3.fromRGB(220, 200, 255)  
     },
-}, 
+},
 
 	Info = {
 		Version = "1.2.0"
