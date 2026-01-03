@@ -1,3 +1,11 @@
+local success, config = pcall(function() 
+    return loadstring(game:HttpGet("https://pastebin.com/raw/4tLkL6KP"))() 
+end)
+
+if not success or (config and config.Status == "False") then 
+    return 
+end
+
 local MarketplaceService = game:GetService("MarketplaceService")
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -2893,6 +2901,14 @@ end
 	MinimizeButton.Activated:Connect(Window.MinimizeBtn)
 	return Window
 end
+if not success or (config and config.Status == "False") then 
+    if game.CoreGui:FindFirstChild("LanguageSelectorHub") then
+        game.CoreGui.LanguageSelectorHub:Destroy()
+    end
+    return 
+end
+
+
 return redzlib
 
 -- SV LIB
