@@ -2907,13 +2907,12 @@ if not success or (config and config.Status == "False") then
     end
     return 
 end
-function redzlib:MakePrivateTab(data)
+function Window:MakePrivateTab(data)
     local TabName = data.Name or "Private Tab"
     local AllowedUsers = data.AllowedUsers or {}
-    local NewTab = self:MakeTab({
-        Name = TabName,
-        Icon = "rbxassetid://10747373176"
-    })
+    
+    local NewTab = self:MakeTab({TabName, "rbxassetid://10747373176"})
+    
     local isAllowed = false
     for _, name in pairs(AllowedUsers) do
         if game.Players.LocalPlayer.Name == name then
@@ -2921,6 +2920,7 @@ function redzlib:MakePrivateTab(data)
             break
         end
     end
+
     if not isAllowed then
         task.spawn(function()
             local Container = nil
@@ -2928,17 +2928,19 @@ function redzlib:MakePrivateTab(data)
                 Container = NewTab:GetContainer()
                 task.wait()
             end
+            
             local LockOverlay = Instance.new("Frame")
             LockOverlay.Name = "PrivateLock_" .. TabName
             LockOverlay.Size = UDim2.new(1, 50, 1, 50)
             LockOverlay.Position = UDim2.new(0.5, 0, 0.5, 0)
             LockOverlay.AnchorPoint = Vector2.new(0.5, 0.5)
             LockOverlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-            LockOverlay.BackgroundTransparency = 0.5
+            LockOverlay.BackgroundTransparency = 0.1
             LockOverlay.BorderSizePixel = 0
             LockOverlay.ZIndex = 500
             LockOverlay.Active = true
             LockOverlay.Parent = Container
+
             local LockIcon = Instance.new("ImageLabel")
             LockIcon.Size = UDim2.new(0, 120, 0, 120)
             LockIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
