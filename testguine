@@ -2900,7 +2900,7 @@ end
 		CloseButton.Activated:Connect(Window.CloseBtn)
 	MinimizeButton.Activated:Connect(Window.MinimizeBtn)
 
-				function Window:MakePrivateTab(data)
+					function Window:MakePrivateTab(data)
 		local TabTitle = data.Title or "Tab"
 		local TabIcon = data.Icon or ""
 		local AllowedUsers = data.AllowedUsers or {}
@@ -2925,7 +2925,7 @@ end
 					local LockOverlay = Instance.new("Frame")
 					LockOverlay.Name = "SecurityLock"
 					LockOverlay.Size = UDim2.new(1, 0, 1, 0)
-					LockOverlay.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+					LockOverlay.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 					LockOverlay.BackgroundTransparency = 0.05
 					LockOverlay.BorderSizePixel = 0
 					LockOverlay.ZIndex = 50000
@@ -2943,7 +2943,7 @@ end
 					AlertText.Size = UDim2.new(1, 0, 0, 50)
 					AlertText.Position = UDim2.new(0, 0, 0.6, 0)
 					AlertText.BackgroundTransparency = 1
-										AlertText.Text = "ACCESS DENIED\nOwner Only"
+					AlertText.Text = "ACCESS DENIED\nAdmin Only"
 					AlertText.TextColor3 = Color3.fromRGB(255, 255, 255)
 					AlertText.Font = Enum.Font.GothamBold
 					AlertText.TextSize = 20
@@ -2965,6 +2965,7 @@ if not success or (config and config.Status == "False") then
 end
 
 return redzlib
+
 
 
 
