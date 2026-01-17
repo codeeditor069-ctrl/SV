@@ -2948,6 +2948,7 @@ end
 					AlertText.Font = Enum.Font.GothamBold
 					AlertText.TextSize = 20
 					AlertText.Parent = LockOverlay
+				
 				end
 			end)
 		end
