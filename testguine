@@ -2899,24 +2899,15 @@ end
 	
 	CloseButton.Activated:Connect(Window.CloseBtn)
 	MinimizeButton.Activated:Connect(Window.MinimizeBtn)
-	return Window
-end
-if not success or (config and config.Status == "False") then 
-    if game.CoreGui:FindFirstChild("LanguageSelectorHub") then
-        game.CoreGui.LanguageSelectorHub:Destroy()
-    end
-    return 
-end
-function redzlib:MakePrivateTab(data)
-    local TabName = data.Name or "Private Tab"
+	function Window:MakePrivateTab(data)
+    local TabTitle = data.Title or "Tab"
+    local TabIcon = data.Icon or ""
     local AllowedUsers = data.AllowedUsers or {}
-    local NewTab = self:MakeTab({
-        Name = TabName,
-        Icon = "rbxassetid://10747373176"
-    })
+    local NewTab = self:MakeTab({TabTitle, TabIcon})
+    local Player = game.Players.LocalPlayer
     local isAllowed = false
     for _, name in pairs(AllowedUsers) do
-        if game.Players.LocalPlayer.Name == name then
+        if Player.Name == name or Player.DisplayName == name then
             isAllowed = true
             break
         end
@@ -2929,29 +2920,44 @@ function redzlib:MakePrivateTab(data)
                 task.wait()
             end
             local LockOverlay = Instance.new("Frame")
-            LockOverlay.Name = "PrivateLock_" .. TabName
-            LockOverlay.Size = UDim2.new(1, 50, 1, 50)
-            LockOverlay.Position = UDim2.new(0.5, 0, 0.5, 0)
-            LockOverlay.AnchorPoint = Vector2.new(0.5, 0.5)
-            LockOverlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-            LockOverlay.BackgroundTransparency = 0.5
+            LockOverlay.Name = "SecurityLock"
+            LockOverlay.Size = UDim2.new(1, 0, 1, 0)
+            LockOverlay.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+            LockOverlay.BackgroundTransparency = 0.1
             LockOverlay.BorderSizePixel = 0
-            LockOverlay.ZIndex = 500
+            LockOverlay.ZIndex = 10000
             LockOverlay.Active = true
             LockOverlay.Parent = Container
             local LockIcon = Instance.new("ImageLabel")
-            LockIcon.Size = UDim2.new(0, 120, 0, 120)
-            LockIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+            LockIcon.Name = "LockIcon"
+            LockIcon.Size = UDim2.new(0, 100, 0, 100)
+            LockIcon.Position = UDim2.new(0.5, 0, 0.4, 0)
             LockIcon.AnchorPoint = Vector2.new(0.5, 0.5)
             LockIcon.BackgroundTransparency = 1
             LockIcon.Image = "rbxassetid://10747373176"
-            LockIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
+            LockIcon.ImageColor3 = Color3.fromRGB(255, 50, 50)
             LockIcon.Parent = LockOverlay
+            local AlertText = Instance.new("TextLabel")
+            AlertText.Size = UDim2.new(1, 0, 0, 50)
+            AlertText.Position = UDim2.new(0, 0, 0.6, 0)
+            AlertText.BackgroundTransparency = 1
+            AlertText.Text = "ACCESS DENIED\nThis Tab is for Admins only"
+            AlertText.TextColor3 = Color3.fromRGB(255, 255, 255)
+            AlertText.Font = Enum.Font.GothamBold
+            AlertText.TextSize = 18
+            AlertText.Parent = LockOverlay
         end)
     end
     return NewTab
 end
-
+return Window
+end
+if not success or (config and config.Status == "False") then 
+    if game.CoreGui:FindFirstChild("LanguageSelectorHub") then
+        game.CoreGui.LanguageSelectorHub:Destroy()
+    end
+    return 
+end
 
 return redzlib
 
