@@ -2900,7 +2900,7 @@ end
 		CloseButton.Activated:Connect(Window.CloseBtn)
 	MinimizeButton.Activated:Connect(Window.MinimizeBtn)
 
-			function Window:MakePrivateTab(data)
+				function Window:MakePrivateTab(data)
 		local TabTitle = data.Title or "Tab"
 		local TabIcon = data.Icon or ""
 		local AllowedUsers = data.AllowedUsers or {}
