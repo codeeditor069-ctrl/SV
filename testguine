@@ -2899,7 +2899,7 @@ end
 	
 	CloseButton.Activated:Connect(Window.CloseBtn)
 	MinimizeButton.Activated:Connect(Window.MinimizeBtn)
-		function Window:MakePrivateTab(data)
+			function Window:MakePrivateTab(data)
 		local TabTitle = data.Title or "Tab"
 		local TabIcon = data.Icon or ""
 		local AllowedUsers = data.AllowedUsers or {}
@@ -2915,42 +2915,45 @@ end
 		if not isAllowed then
 			task.spawn(function()
 				local Container = nil
-				while not Container do
+				repeat 
 					Container = NewTab:GetContainer()
 					task.wait()
-				end
+				until Container ~= nil
 				local LockOverlay = Instance.new("Frame")
 				LockOverlay.Name = "SecurityLock"
 				LockOverlay.Size = UDim2.new(1, 0, 1, 0)
-				LockOverlay.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-				LockOverlay.BackgroundTransparency = 0.1
+				LockOverlay.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+				LockOverlay.BackgroundTransparency = 0.05
 				LockOverlay.BorderSizePixel = 0
-				LockOverlay.ZIndex = 10000
+				LockOverlay.ZIndex = 50000
 				LockOverlay.Active = true
 				LockOverlay.Parent = Container
 				local LockIcon = Instance.new("ImageLabel")
 				LockIcon.Name = "LockIcon"
-				LockIcon.Size = UDim2.new(0, 100, 0, 100)
+				LockIcon.Size = UDim2.new(0, 80, 0, 80)
 				LockIcon.Position = UDim2.new(0.5, 0, 0.4, 0)
 				LockIcon.AnchorPoint = Vector2.new(0.5, 0.5)
 				LockIcon.BackgroundTransparency = 1
 				LockIcon.Image = "rbxassetid://10747373176"
-				LockIcon.ImageColor3 = Color3.fromRGB(255, 50, 50)
+				LockIcon.ImageColor3 = Color3.fromRGB(255, 0, 0)
 				LockIcon.Parent = LockOverlay
 				local AlertText = Instance.new("TextLabel")
 				AlertText.Size = UDim2.new(1, 0, 0, 50)
 				AlertText.Position = UDim2.new(0, 0, 0.6, 0)
 				AlertText.BackgroundTransparency = 1
-				AlertText.Text = "ACCESS DENIED\nThis Tab is for Admins only"
+				AlertText.Text = "ACCESS DENIED\nOwner Only"
 				AlertText.TextColor3 = Color3.fromRGB(255, 255, 255)
 				AlertText.Font = Enum.Font.GothamBold
-				AlertText.TextSize = 18
+				AlertText.TextSize = 20
 				AlertText.Parent = LockOverlay
+				LockOverlay.AncestryChanged:Connect(function()
+					if not LockOverlay.Parent and not isAllowed then
+						Container.Visible = false
+					end
+				end)
 			end)
 		end
 		return NewTab
-	end
-	return Window
 end
 if not success or (config and config.Status == "False") then 
     if game.CoreGui:FindFirstChild("LanguageSelectorHub") then
